@@ -6,6 +6,9 @@ name = "pypi"
 [packages]
 django = "*"
 djangorestframework = "*"
+djangorestframework-simplejwt = "*"
+clearbit = "*"
+pyhunter = "*"
 
 [dev-packages]
 

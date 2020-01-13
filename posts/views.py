@@ -1,23 +1,34 @@
 from django.shortcuts import render
 from rest_framework import generics
-from posts.serializers import PostDetailSerializer, PostListSerializer
+from posts.serializers import *
 from posts.models import Post
 from rest_framework.permissions import IsAuthenticated
 
 
 class PostCreateView(generics.CreateAPIView):
     serializer_class = PostDetailSerializer
+    permission_classes = (IsAuthenticated,)
 
 
 class PostListView(generics.ListAPIView):
     serializer_class = PostListSerializer
     queryset = Post.objects.all()
+    permission_classes = (IsAuthenticated,)
 
 
-class PostLikesView(generics.RetrieveUpdateAPIView):
-    serializer_class = PostDetailSerializer
+class PostLikeView(generics.UpdateAPIView):
+    serializer_class = PostLikeSerializer
     queryset = Post.objects.all()
-    permission_classes = (IsAuthenticated, )
+
+
+class PostUnlikeView(generics.UpdateAPIView):
+    serializer_class = PostUnlikeSerializer
+    queryset = Post.objects.all()
+
+
+class SignupView(generics.CreateAPIView):
+    serializer_class = SignupSerializer
+
 
 
 
